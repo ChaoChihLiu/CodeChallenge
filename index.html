@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>QUnit Example</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.4.0.css">
+</head>
+
+<body>
+  <div id="qunit"></div>
+  <div id="question2">
+	<span><b>Question 2</b></span>
+	<ul>
+		<li class="entry">
+			<p>aa</p>
+		</li>
+		<li class="entry">
+			<p>bb</p>
+		</li>
+		<li class="entry">
+			<p>cc</p>
+		</li>
+		<li class="entry">
+			<p>dd</p>
+		</li>
+	</ul>
+  </div>
+  <script src="https://code.jquery.com/qunit/qunit-2.4.0.js"></script>
+  <script src="codeChallenge.js">
+  </script>
+  <script>
+	QUnit.test( "test this week data", function( assert ) {
+		let result = genData('http://basketball.example.com/thisweek.json');
+		assert.equal( result.games.length >= 4, true, "success" );
+    });
+	
+	QUnit.test( "test game detail", function( assert ) {
+		summary();
+		assert.equal( true, true, "success" );
+    });
+	
+	QUnit.test( "test game detail", function( assert ) {
+		var object = {string:'1', obj:{c:'435'}, num:1, bool:true, array:['1', '2', '3'], date:new Date()};
+		var object2 = deepclone(object);
+		assert.equal( object === object2, false, "different object" );
+		assert.equal( object.string === object2.string, true, "the same string value" );
+		assert.equal( object.obj === object2.obj, false, "different reference of object" );
+		assert.equal( object.obj.c === object2.obj.c, true, "the the same c value of object" );
+		assert.equal( object.array === object2.array, false, "different reference of array" );
+		assert.equal( JSON.stringify(object.array) === JSON.stringify(object2.array), true, "the same elements of array" );
+		assert.equal( object.date === object2.date, false, "different reference of date" );
+		assert.equal( object.date.getTime() === object2.date.getTime(), true, "the the same value of date" );
+    });
+  </script>
+  
+  
+  
+</body>
+</html>
